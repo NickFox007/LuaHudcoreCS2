@@ -43,7 +43,7 @@ end
 --]]
 
 function HC_PrintCenterTextAll(text)
-	ScriptPrintMessageCenterAllWithParams("</font>"..text.."<script>", "#SFUI_ContractKillStart", nil, nil)
+	ScriptPrintMessageCenterAll(text)
 end
 
 function HC_PrintChatAll(text)		
