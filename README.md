@@ -14,3 +14,22 @@ HC_ShowPanelInfo(text, duration) - shows message with round end panel
 # Requirements
 
 timers.lua - script for timers support (included in the repository)
+
+# Supported color codes for HC_ReplaceColorCodes
+
+{white}
+{darkred}
+{purple}
+{darkgreen}
+{lightgreen}
+{green}
+{red}
+{lightgray}
+{yellow}
+{orange}
+{darkgray}
+{blue}
+{darkblue}
+{gray}
+{darkpurple}
+{lightred}
