@@ -11,6 +11,8 @@ HC_PrintChatAll(text)	- print message into chat (automatic format for correct co
 
 HC_ShowPanelInfo(text, duration) - shows message with round end panel
 
+HC_ShowInstructorHint(text, duration, icon) - shows text with instructor hint
+
 # Requirements
 
 timers.lua - script for timers support (included in the repository)
@@ -48,3 +50,7 @@ timers.lua - script for timers support (included in the repository)
 {lightgray}
 
 {darkgray}
+
+# Supported icons for instructor hint
+
+https://developer.valvesoftware.com/wiki/Env_instructor_hint#Icons
