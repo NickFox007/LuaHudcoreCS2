@@ -1,6 +1,7 @@
-require('timers')
+require "libs.timers"
 
 --[[
+
 function _GetPlayerInst(client)
 	return PlayerInstanceFromIndex(Entities:FindAllByClassname("cs_player_controller")[tonumber(client)]:GetEntityIndex())
 end
@@ -13,7 +14,8 @@ function HC_ShowPanelStatus(client, text, duration)
 	netTable["duration"] = duration
 	FireGameEvent( "show_survival_respawn_status", netTable )
 end
---]]
+
+--]]  -- It doesn't work in CS2 now
 
 
 function HC_ReplaceColorCodes(text)
@@ -51,22 +53,41 @@ function HC_PrintChatAll(text)
 end
 
 function HC_ShowPanelInfo(text, duration)
-	local client = 0
 	local netTable = {}	
 	netTable["funfact_token"] = text
 	
 	FireGameEvent( "cs_win_panel_round", netTable )
 	
 	Timers:CreateTimer({
-		useGameTime = true,
 		endTime = duration,
-		callback = function(client)
-			HC_ResetPanelInfo(client)    
+		callback = function()
+			HC_ResetPanelInfo()    
 		end
 	})
 end
 
-function HC_ResetPanelInfo(client)
-	
+function HC_ResetPanelInfo()	
 	FireGameEvent( "round_start", nil )
+end
+
+
+function HC_ShowInstructorHint(text, duration, icon)
+	
+	local targetname = UniqueString("instructor")
+	local instr_ent = SpawnEntityFromTableSynchronous("env_instructor_hint",{
+		targetname = targetname,
+        hint_caption = text,
+        hint_timeout = duration,
+		hint_icon_onscreen = icon
+    })
+	
+	DoEntFire("!self","ShowHint",targetname,0,nil,instr_ent);
+	
+	Timers:CreateTimer({
+		endTime = duration,
+		callback = function()
+			UTIL_Remove(instr_ent)    
+		end
+	})
+		
 end
